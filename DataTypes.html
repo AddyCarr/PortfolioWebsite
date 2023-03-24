@@ -1,0 +1,515 @@
+<html>
+  <head>
+    <title>test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="content">
+      <hr />
+      <h2 id="elementry-data-types">Elementry Data Types</h2>
+    </br>
+      </h2>
+      <p>
+        🔰 <strong><em>TLDR</em></strong>
+      </p>
+      <h2
+        id="--elementry-data-types-are-data-structures-that-cannot-be-expanded-these-do-not-need-a-storage-location"
+      >
+        - Elementry data types are data structures that cannot be expanded.
+        These do not need a storage location.
+      </h2>
+      <hr />
+      
+      <ul>
+        <li>
+          The elementary data types in Solidity are <code>bool</code>,
+          <code>int</code>, <code>uint</code>, <code>address</code>,
+          <code>bytes</code>, <code>fixed</code>, and <code>ufixed</code>. These
+          data types can not be expanded.
+        </li>
+        <li>
+          Only <em>non</em> elementry data types need a storage location
+          [[Storage &amp; Memory]]. Remember strings are actually a special
+          array so require a location.
+        </li>
+      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>string</td>
+            <td>sequence of characters</td>
+            <td>"hello world!"</td>
+          </tr>
+          <tr>
+            <td>bool</td>
+            <td>Boolean value (true/false)</td>
+            <td>true, false</td>
+          </tr>
+          <tr>
+            <td>int</td>
+            <td>interger. Positive or Negative. No decimal.</td>
+            <td>0, -300</td>
+          </tr>
+          <tr>
+            <td>uint</td>
+            <td>unsigned (positive). No decimal.</td>
+            <td>0, 5</td>
+          </tr>
+          <tr>
+            <td>fixed/ufixed</td>
+            <td>fixed point number. Number with decimal after it</td>
+            <td>20.01</td>
+          </tr>
+          <tr>
+            <td>address</td>
+            <td>Adress to which a txn can be sent.</td>
+            <td>0x13ba..</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 id="reference-types">Reference Types</h2>
+      <h3 id="structs">Structs</h3>
+      <ul>
+        <li>
+          Structs are a data format where data types and names can be specified.
+          They are accessed through struct.option. Think about it as defining
+          sub-properties of different types of a variable.
+        </li>
+        <li>
+          Struct data types are defined with a capital variable name ie, struct
+          MyStruct
+        </li>
+        <li>
+          Defining a new variable with the data structure of a Struct would be
+          as follows: <code>StructName variableName = value</code>
+        </li>
+      </ul>
+      <pre><code class="hljs solidity language-solidity">struct Sandwich {
+string name<span class="hljs-comment">;</span>
+string status<span class="hljs-comment">;</span>
+}
+
+Sandwich[] sandwiches<span class="hljs-comment">;</span>
+function eatSandwich(uint _index) public {
+Sandwich storage mySandwich <span class="hljs-operator">=</span> sandwiches[_index]<span class="hljs-comment">;</span>
+mySandwich.status <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Eaten!&quot;</span><span class="hljs-comment">;</span>
+</code></pre>
+      <p><strong>Defining a variable of type struct</strong></p>
+      <pre><code class="hljs solidity language-solidity"> <span class="hljs-keyword">function</span> feed<span class="hljs-constructor">AndMultiply(<span class="hljs-params">uint</span> <span class="hljs-params">_zombieId</span>, <span class="hljs-params">uint</span> <span class="hljs-params">_targetDna</span>)</span> public {
+    require(msg.sender<span class="hljs-operator"> == </span>zombieToOwner<span class="hljs-literal">[<span class="hljs-identifier">_zombieId</span>]</span>);
+    Zombie storage myZombie = zombies<span class="hljs-literal">[<span class="hljs-identifier">_zombieId</span>]</span>;
+  }
+</code></pre>
+      <p>
+        The "Zombie" keyword is the name of a custom struct or data structure
+        defined elsewhere in the code, which is used to represent the data
+        structure of a zombie.
+      </p>
+      <p>
+        In summary, this statement creates a "Zombie storage" variable named
+        "myZombie", and initializes it with the value of the "Zombie" struct
+        that is stored in the "zombies" mapping at the key "_zombieId".
+      </p>
+      <p>[[Declaring Variables]]</p>
+      <h4 id="passing-structs-as-arguments">Passing structs as arguments</h4>
+      <p>
+        You can pass a storage pointer to a struct as an argument to
+        a&nbsp;<code>private</code>&nbsp;or&nbsp;<code>internal</code>&nbsp;function.
+        This is useful, for example, for passing around
+        our&nbsp;<code>Zombie</code>&nbsp;structs between functions.
+      </p>
+      <p>The syntax looks like this:</p>
+      <pre><code class="hljs solidity language-solidity"><span class="hljs-keyword">function</span> _doStuff(Zombie <span class="hljs-keyword">storage</span> _zombie) <span class="hljs-type">internal</span> { // <span class="hljs-keyword">do</span> stuff <span class="hljs-keyword">with</span> _zombie }
+</code></pre>
+      <h3 id="mappings">Mappings</h3>
+      <ul>
+        <li>
+          A mapping is essentially a key-value store for storing and looking up
+          data.
+        </li>
+        <li>
+          All 'keys' and all 'values' have to be the same type respectively
+        </li>
+        <li>`mapping(string=&gt;uint)``</li>
+      </ul>
+      <p>
+        Eg, For a financial app, storing a uint that holds the user's account
+        balance:
+      </p>
+      <pre><code class="hljs solidity language-solidity">mapping (address =&gt; <span class="hljs-keyword">uint</span>) <span class="hljs-keyword">public</span> accountBalance;
+</code></pre>
+      <p>Or could be used to store / lookup usernames based on userId</p>
+      <pre><code class="hljs solidity language-solidity">mapping (<span class="hljs-keyword">uint</span> =&gt; <span class="hljs-keyword">string</span>) userIdToName;
+</code></pre>
+      <h3 id="arrays">Arrays</h3>
+      <ul>
+        <li>
+          Fixed array: array that contanis a single type of element and has an
+          unchanging length, eg, `int[3] = [1, 2, 3]
+        </li>
+        <li>
+          dynamic array: array that contains single type of element, cna change
+          in size over time, eg, `int[] = [1, 2, 3]
+        </li>
+      </ul>
+      <h2 id="msg-global-variable">msg. Global Variable</h2>
+      <p>
+        msg object contains information about the calls or transactions that
+        invoked the curent function.
+      </p>
+      <p>
+        | Name | Description |<br />
+        | ---------- | ------------------------------------------------------- |
+        --- |<br />
+        | msg.data | "data" field frin call |<br />
+        | msg.gas | Amount of gas current function has available |<br />
+        | msg.sender | address of account that started the function invocation
+        |<br />
+        | msg.value | amount of wei that was sent with function invocation | |
+        |<br />
+        | |
+      </p>
+      <p>
+        In Solidity, there are certain global variables that are available to
+        all functions. One of these is&nbsp;<code>msg.sender</code>, which
+        refers to the&nbsp;<code>address</code>&nbsp;of the person (or smart
+        contract) who called the current function. It refers to the user's
+        address.
+      </p>
+      <pre><code class="hljs solidity language-solidity"><span class="hljs-function">function <span class="hljs-title">setMyNumber</span>(<span class="hljs-params"><span class="hljs-built_in">uint</span> _myNumber</span>) <span class="hljs-keyword">public</span></span> {
+favoriteNumber[msg.sender] = _myNumber; }
+
+<span class="hljs-function">function <span class="hljs-title">whatIsMyNumber</span>() <span class="hljs-keyword">public</span> view <span class="hljs-title">returns</span> (<span class="hljs-params"><span class="hljs-built_in">uint</span></span>)</span> { <span class="hljs-keyword">return</span> favoriteNumber[msg.sender]; }
+</code></pre>
+      <pre><code>hljs <span class="hljs-number">1</span>) Delcare the mapping, <span class="hljs-keyword">next</span> set the mapping by creating a <span class="hljs-keyword">function</span> taking
+<span class="hljs-regexp">//</span> Update our `favoriteNumber` mapping to store `_myNumber` under `msg.sender`
+<span class="hljs-regexp">//</span> ^ The syntax <span class="hljs-keyword">for</span> storing data <span class="hljs-keyword">in</span> a mapping is just like with arrays
+<span class="hljs-regexp">//</span> Retrieve the value stored <span class="hljs-keyword">in</span> the sende<span class="hljs-string">r&#x27;s address
+// Will be `0` if the sender hasn&#x27;</span>t called `setMyNumber` yet
+</code></pre>
+      <p>
+        Using&nbsp;<code>msg.sender</code>&nbsp;gives you the
+        <strong>security</strong> of the Ethereum blockchain — the only way
+        someone can modify someone else's data would be to steal the private key
+        associated with their Ethereum address.
+      </p>
+      <h2 id="require-add-on">Require Add-on</h2>
+      <p>
+        <code>require</code>&nbsp;makes it so that the function will throw an
+        error and stop executing if some condition is not true:
+      </p>
+      <pre><code class="hljs solidity language-solidity"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHiToVitalik</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> memory _name</span>) <span class="hljs-title">public</span> <span class="hljs-title">returns</span> (<span class="hljs-params"><span class="hljs-keyword">string</span> memory</span>) <span class="hljs-title">require</span>(<span class="hljs-params">keccak256(<span class="hljs-params">abi.encodePacked(<span class="hljs-params">_name</span>)</span>) == keccak256(<span class="hljs-params">abi.encodePacked(<span class="hljs-params"><span class="hljs-string">&quot;Vitalik&quot;</span></span>)</span>)</span>)</span>;
+</code></pre>
+      <pre><code>hljs { // Compares <span class="hljs-keyword">if</span> _name equals <span class="hljs-string">&quot;Vitalik&quot;</span>. Throws an error <span class="hljs-keyword">and</span> exits <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">true</span>. // (Side note: Solidity doesn<span class="hljs-symbol">&#x27;t</span> have native string comparison, so we // compare their keccak256 hashes to see <span class="hljs-keyword">if</span> the strings are equal)
+
+// <span class="hljs-keyword">If</span> it<span class="hljs-symbol">&#x27;s</span> <span class="hljs-literal">true</span>, proceed <span class="hljs-keyword">with</span> the <span class="hljs-keyword">function</span>: <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hi!&quot;</span>; }
+</code></pre>
+      <p>
+        Thus&nbsp;<code>require</code>&nbsp;is quite useful for verifying
+        certain conditions that must be true before running a
+        function.[[Conversation with ChatGPT]]
+      </p>
+    </div>
+    <style type="text/css">
+      body {
+        font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #111;
+        background-color: #fbfbfb;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-feature-settings: "kern" 1;
+        -moz-font-feature-settings: "kern" 1;
+        -o-font-feature-settings: "kern" 1;
+        font-feature-settings: "kern" 1;
+        font-kerning: normal;
+        padding: 30px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        body {
+          padding: 5px;
+        }
+        body > #content {
+          padding: 0px 20px 20px 20px !important;
+        }
+      }
+
+      body > #content {
+        margin: 0px;
+        max-width: 900px;
+        border: 1px solid #e1e4e8;
+        padding: 10px 40px;
+        padding-bottom: 20px;
+        border-radius: 2px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      summary {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      hr {
+        color: #bbb;
+        background-color: #bbb;
+        height: 1px;
+        flex: 0 1 auto;
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+      }
+
+      .hljs-operator {
+        color: #868686;
+        /* There is a bug where the syntax highlighter would pick no color for e.g. `&&` symbols in the code samples. Let's overwrite this */
+      }
+
+      /**
+ * Links
+ */
+
+      a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: #0366d6;
+      }
+
+      a:hover {
+        color: #0366d6;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #f6f8fa;
+        border-radius: 3px;
+        font-size: 85%;
+        line-height: 1.45;
+        overflow: auto;
+        padding: 16px;
+      }
+
+      /**
+  * Code blocks
+  */
+
+      code {
+        background-color: rgba(27, 31, 35, 0.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        word-wrap: break-word;
+        padding: 0.2em 0.4em;
+        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+          monospace;
+      }
+
+      pre > code {
+        background-color: transparent;
+        border: 0;
+        display: inline;
+        line-height: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: 0;
+        word-wrap: normal;
+        font-size: 100%;
+      }
+
+      /**
+ * Blockquotes
+ */
+
+      blockquote {
+        margin-left: 30px;
+        margin-top: 0px;
+        margin-bottom: 16px;
+        border-left-width: 3px;
+        padding: 0 1em;
+        color: #828282;
+        border-left: 4px solid #e8e8e8;
+        padding-left: 15px;
+        font-size: 18px;
+        letter-spacing: -1px;
+        font-style: italic;
+      }
+
+      blockquote * {
+        font-style: normal !important;
+        letter-spacing: 0;
+        color: #6a737d !important;
+      }
+
+      /**
+ * Tables
+ */
+
+      table {
+        border-spacing: 2px;
+        display: block;
+        font-size: 14px;
+        overflow: auto;
+        width: 100%;
+        margin-bottom: 16px;
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      th {
+        font-weight: 600;
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      tr {
+        background-color: #fff;
+        border-top: 1px solid #c6cbd1;
+      }
+
+      table tr:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+
+      /**
+ * Others
+ */
+
+      img {
+        max-width: 100%;
+      }
+
+      p {
+        line-height: 24px;
+        font-weight: 400;
+        font-size: 16px;
+        color: #24292e;
+      }
+
+      ul {
+        margin-top: 0;
+      }
+
+      li {
+        color: #24292e;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      li + li {
+        margin-top: 0.25em;
+      }
+
+      * {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        color: #24292e;
+      }
+
+      a:visited {
+        color: #0366d6;
+      }
+
+      h1,
+      h2,
+      h3 {
+        border-bottom: 1px solid #eaecef;
+        color: #111;
+        /* Darker */
+      }
+
+      code > * {
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+      }
+    </style>
+    <style type="text/css">
+      pre code.hljs {
+        display: block;
+        overflow-x: auto;
+        padding: 1em;
+      }
+      code.hljs {
+        padding: 3px 5px;
+      }
+      .hljs {
+        color: #abb2bf;
+        background: #282c34;
+      }
+      .hljs-comment,
+      .hljs-quote {
+        color: #5c6370;
+        font-style: italic;
+      }
+      .hljs-doctag,
+      .hljs-formula,
+      .hljs-keyword {
+        color: #c678dd;
+      }
+      .hljs-deletion,
+      .hljs-name,
+      .hljs-section,
+      .hljs-selector-tag,
+      .hljs-subst {
+        color: #e06c75;
+      }
+      .hljs-literal {
+        color: #56b6c2;
+      }
+      .hljs-addition,
+      .hljs-attribute,
+      .hljs-meta .hljs-string,
+      .hljs-regexp,
+      .hljs-string {
+        color: #98c379;
+      }
+      .hljs-attr,
+      .hljs-number,
+      .hljs-selector-attr,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-template-variable,
+      .hljs-type,
+      .hljs-variable {
+        color: #d19a66;
+      }
+      .hljs-bullet,
+      .hljs-link,
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-symbol,
+      .hljs-title {
+        color: #61aeee;
+      }
+      .hljs-built_in,
+      .hljs-class .hljs-title,
+      .hljs-title.class_ {
+        color: #e6c07b;
+      }
+      .hljs-emphasis {
+        font-style: italic;
+      }
+      .hljs-strong {
+        font-weight: 700;
+      }
+      .hljs-link {
+        text-decoration: underline;
+      }
+    </style>
+  </body>
+</html>
