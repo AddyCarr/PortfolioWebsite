@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="icon" href="assets/img/Favicon.png">
+    <title>Solidity Notes | Adam Carr</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Fonts-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/fonts/fontawesome/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/fonts/pe-icon/pe-icon.css"
+    />
+    <!-- Vendors-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendors/bootstrap/grid.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendors/magnific-popup/magnific-popup.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendors/swiper/swiper.css"
+    />
+    <!-- App & fonts-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:400,700"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      id="app-stylesheet"
+      href="assets/css/main.css"
+    />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="page-wrap" id="root">
+
+      <!-- Content-->
+      <div class="wil-content">
+        <!-- Section -->
+        <section class="awe-section-blog-page">
+          <div class="container">
+            <!-- page-title -->
+            <div class="page-title-blog">
+              <span class="post-detail__cat">Solidity Notes</span>
+              <h2 class="page-title__title">Data Types</h2>
+              <div class="post-detail__meta">
+                <span class="date">March 2023</span
+                ><span class="author"><a href="#">by Adam Carr</a></span>
+              </div>
+              <div class="page-title__divider"></div>
+            </div>
+            <!-- End / page-title -->
+          </div>
+        </section>
+        <!-- End / Section -->
+
+        <!-- Section -->
+
+        <section class="awe-section-blog-body bg-gray">
+            <body>
+				<div class="container d-md-flex align-items-stretch">
+
+				  <!-- Imported HTML Body(from Markdown)  -->
+				  <div
+					id="content"
+					class="w-100 h-100 p-2 p-md-2 pt-5"
+					style="overflow: hidden"
+				  >
+					<div id="html-import" style="height: 100% overflow: hidden">
+					  <object 
+						type="text/html"
+						data="assets/html/events.html"
+						style="height: 4000px; width: 100%; overflow: hidden"
+					  ></object>
+					  <style>
+						html,
+						body {
+						  overflow: auto;
+						}
+						.container.d-md-flex.align-items-stretch {
+						  overflow: hidden;
+						}
+					  </style>
+					</div>
+				  </div>
+			</body>
+		</section>
+
+		<!-- Sidebar -->
+  
+
+				 <div class="sidenav">
+          <div class="header__inner">
+          
+            <div class="navbar-toggle-sidebar" id="fs-button">
+              <div class="navbar-icon"><span></span></div>
+            </div>
+          </div>
+      
+          <!-- fullscreenmenu__module -->
+          <div class="fullscreenmenu__module" trigger="#fs-button">
+            <!-- overlay-menu -->
+            <nav class="overlay-menu">
+              <!--  -->
+              <ul class="wil-menu-list">
+                <li class="current-menu-item"><a href="index.html">Home</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="blog-detail-obsidian.html">Blog</a></li>
+                <li><a href="blog.html">Resume</a></li>
+              </ul>
+              <!--  -->
+            </nav>
+            <!-- End / overlay-menu -->
+          </div>
+          <!-- End / fullscreenmenu__module -->
+
+          
+          <div class="sidenav__inner">
+            <nav class="sidebar card py-2 mb-4 riy">
+              <ul class="nav flex-column" id="nav_accordion">
+                <li class="nav-item side-texr" style="padding: 2%">
+                  <div class="card p-10px" style=" display: flex;
+                  padding: 5%;">
+                    <img class="card-img-top" src="assets/img/Dp1.gif" alt="Card image cap"  style=" 
+                    width: 30%;
+                    display: flex;
+                    align-items: center;">
+                </div>
+
+                </li>
+                <li class="nav-item has-submenu">
+                  <a class="nav-link" href="#"><b> Solidity Content Notes</b></a>
+                  <ul class="submenu collapse sidesub">
+                    <li><a class="nav-link" href="#">Modifiers</a></li>
+                    <li><a class="nav-link" href="#">NatSpec Tags </a></li>
+                    <li><a class="nav-link" href="#">Storage & Memory  </a> </li>
+                    <li><a class="nav-link" href="#">Data Types & Structures </a> </li>
+                    <li><a class="nav-link" href="#">Functions </a> </li>
+                    <li><a class="nav-link" href="#">Events </a> </li>
+                    <li><a class="nav-link" href="#">Interfaces </a> </li>
+                    <li><a class="nav-link" href="#">Gas </a> </li>
+                    <li><a class="nav-link" href="#">Deployment </a> </li>
+                    <li><a class="nav-link" href="#">Moving Ether </a> </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-submenu">
+                  <a class="nav-link" href="#"><b> Articles </b></a>
+                  <ul class="submenu collapse sidesub">
+                    <li><a class="nav-link" href="#">Crypto Use-cases</a></li>
+                    <li><a class="nav-link" href="#">On Trust & Identity</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Something </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Other link </a>
+                </li>
+              </ul>
+              </nav>
+
+              <script>
+                                document.addEventListener("DOMContentLoaded", function(){
+                  document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
+                    
+                    element.addEventListener('click', function (e) {
+
+                      let nextEl = element.nextElementSibling;
+                      let parentEl  = element.parentElement;	
+
+                        if(nextEl) {
+                            e.preventDefault();	
+                            let mycollapse = new bootstrap.Collapse(nextEl);
+                            
+                            if(nextEl.classList.contains('show')){
+                              mycollapse.hide();
+                            } else {
+                                mycollapse.show();
+                                // find other submenus with class=show
+                                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                                // if it exists, then close all of them
+                                if(opened_submenu){
+                                  // new bootstrap.Collapse(opened_submenu);
+                                }
+                            }
+                        }
+                    }); // addEventListener
+                  }) // forEach
+                }); 
+                // DOMContentLoaded  end
+              </script>
+          </div>
+</div>
+				 
+
+      <!-- footer -->
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-6">
+              <p class="footer__coppy">
+                2018 &copy; Copyright <a href="http://awe7.com/">Awe7</a>. All
+                rights Reserved.
+              </p>
+            </div>
+            <div class="col-md-6 col-lg-6">
+              <div class="footer__social">
+                <!-- social-icon -->
+                <a class="social-icon" href="#"
+                  ><i class="social-icon__icon fa fa-facebook"></i> </a
+                ><!-- End / social-icon -->
+
+                <!-- social-icon -->
+                <a class="social-icon" href="#"
+                  ><i class="social-icon__icon fa fa-twitter"></i> </a
+                ><!-- End / social-icon -->
+
+                <!-- social-icon -->
+                <a class="social-icon" href="#"
+                  ><i class="social-icon__icon fa fa-linkedin"></i> </a
+                ><!-- End / social-icon -->
+
+                <!-- social-icon -->
+                <a class="social-icon" href="#"
+                  ><i class="social-icon__icon fa fa-behance"></i> </a
+                ><!-- End / social-icon -->
+
+                <!-- social-icon -->
+                <a class="social-icon" href="#"
+                  ><i class="social-icon__icon fa fa-vimeo"></i> </a
+                ><!-- End / social-icon -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End / footer -->
+	  
+    </div>
+    <!-- Vendors-->
+    <script
+      type="text/javascript"
+      src="assets/vendors/jquery/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/imagesloaded/imagesloaded.pkgd.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/isotope-layout/isotope.pkgd.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/jquery-one-page/jquery.nav.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/jquery.easing/jquery.easing.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/jquery.matchHeight/jquery.matchHeight.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/magnific-popup/jquery.magnific-popup.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/masonry-layout/masonry.pkgd.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/jquery.waypoints/jquery.waypoints.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/swiper/swiper.jquery.js"
+    ></script>
+    <script type="text/javascript" src="assets/vendors/menu/menu.js"></script>
+    <script
+      type="text/javascript"
+      src="assets/vendors/typed/typed.min.js"
+    ></script>
+    <!-- App-->
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

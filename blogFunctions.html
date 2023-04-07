@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="icon" href="assets/img/Favicon.png">
     <title>Solidity Notes | Adam Carr</title>
     <meta charset="utf-8" />
@@ -56,41 +58,6 @@
 
   <body>
     <div class="page-wrap" id="root">
-      <!-- header -->
-      <header class="header header--fixed">
-        <div class="header__inner">
-          <div class="header__logo p-30px">
-            <a href="index.html"
-              ><img
-                src="assets/img/logo.png"
-                alt=""
-                style="width: 50px"
-                class="p-20px"
-            /></a>
-          </div>
-          <div class="navbar-toggle" id="fs-button">
-            <div class="navbar-icon"><span></span></div>
-          </div>
-        </div>
-
-        <!-- fullscreenmenu__module -->
-        <div class="fullscreenmenu__module" trigger="#fs-button">
-          <!-- overlay-menu -->
-          <nav class="overlay-menu">
-            <!--  -->
-            <ul class="wil-menu-list">
-              <li class="current-menu-item"><a href="index.html">Home</a></li>
-              <li><a href="work.html">Work</a></li>
-              <li><a href="blog-detail-obsidian.html">Blog</a></li>
-              <li><a href="blog.html">Resume</a></li>
-            </ul>
-            <!--  -->
-          </nav>
-          <!-- End / overlay-menu -->
-        </div>
-        <!-- End / fullscreenmenu__module -->
-      </header>
-      <!-- End / header -->
 
       <!-- Content-->
       <div class="wil-content">
@@ -98,7 +65,7 @@
         <section class="awe-section-blog-page">
           <div class="container">
             <!-- page-title -->
-            <div class="page-title pb-40">
+            <div class="page-title-blog">
               <span class="post-detail__cat">Solidity Notes</span>
               <h2 class="page-title__title">Data Types</h2>
               <div class="post-detail__meta">
@@ -124,10 +91,10 @@
 					class="w-100 h-100 p-2 p-md-2 pt-5"
 					style="overflow: hidden"
 				  >
-					<div id="html" style="height: 100% overflow: hidden">
+					<div id="html-import" style="height: 100% overflow: hidden">
 					  <object 
 						type="text/html"
-						data="DataTypes.html"
+						data="assets/html/Functions.html"
 						style="height: 4000px; width: 100%; overflow: hidden"
 					  ></object>
 					  <style>
@@ -145,11 +112,109 @@
 		</section>
 
 		<!-- Sidebar -->
+  
+
 				 <div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+          <div class="header__inner">
+          
+            <div class="navbar-toggle-sidebar" id="fs-button">
+              <div class="navbar-icon"><span></span></div>
+            </div>
+          </div>
+      
+          <!-- fullscreenmenu__module -->
+          <div class="fullscreenmenu__module" trigger="#fs-button">
+            <!-- overlay-menu -->
+            <nav class="overlay-menu">
+              <!--  -->
+              <ul class="wil-menu-list">
+                <li class="current-menu-item"><a href="index.html">Home</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="blog-detail-obsidian.html">Blog</a></li>
+                <li><a href="blog.html">Resume</a></li>
+              </ul>
+              <!--  -->
+            </nav>
+            <!-- End / overlay-menu -->
+          </div>
+          <!-- End / fullscreenmenu__module -->
+
+          
+          <div class="sidenav__inner">
+            <nav class="sidebar card py-2 mb-4 riy">
+              <ul class="nav flex-column" id="nav_accordion">
+                <li class="nav-item side-texr" style="padding: 2%">
+                  <div class="card p-10px" style=" display: flex;
+                  padding: 5%;">
+                    <img class="card-img-top" src="assets/img/Dp1.gif" alt="Card image cap"  style=" 
+                    width: 30%;
+                    display: flex;
+                    align-items: center;">
+                </div>
+
+                </li>
+                <li class="nav-item has-submenu">
+                  <a class="nav-link" href="#"><b> Solidity Content Notes</b></a>
+                  <ul class="submenu collapse sidesub">
+                    <li><a class="nav-link" href="#">Modifiers</a></li>
+                    <li><a class="nav-link" href="#">NatSpec Tags </a></li>
+                    <li><a class="nav-link" href="#">Storage & Memory  </a> </li>
+                    <li><a class="nav-link" href="#">Data Types & Structures </a> </li>
+                    <li><a class="nav-link" href="#">Functions </a> </li>
+                    <li><a class="nav-link" href="#">Events </a> </li>
+                    <li><a class="nav-link" href="#">Interfaces </a> </li>
+                    <li><a class="nav-link" href="#">Gas </a> </li>
+                    <li><a class="nav-link" href="#">Deployment </a> </li>
+                    <li><a class="nav-link" href="#">Moving Ether </a> </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-submenu">
+                  <a class="nav-link" href="#"><b> Articles </b></a>
+                  <ul class="submenu collapse sidesub">
+                    <li><a class="nav-link" href="#">Crypto Use-cases</a></li>
+                    <li><a class="nav-link" href="#">On Trust & Identity</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Something </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Other link </a>
+                </li>
+              </ul>
+              </nav>
+
+              <script>
+                                document.addEventListener("DOMContentLoaded", function(){
+                  document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
+                    
+                    element.addEventListener('click', function (e) {
+
+                      let nextEl = element.nextElementSibling;
+                      let parentEl  = element.parentElement;	
+
+                        if(nextEl) {
+                            e.preventDefault();	
+                            let mycollapse = new bootstrap.Collapse(nextEl);
+                            
+                            if(nextEl.classList.contains('show')){
+                              mycollapse.hide();
+                            } else {
+                                mycollapse.show();
+                                // find other submenus with class=show
+                                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                                // if it exists, then close all of them
+                                if(opened_submenu){
+                                  // new bootstrap.Collapse(opened_submenu);
+                                }
+                            }
+                        }
+                    }); // addEventListener
+                  }) // forEach
+                }); 
+                // DOMContentLoaded  end
+              </script>
+          </div>
 </div>
 				 
 
@@ -245,5 +310,8 @@
     ></script>
     <!-- App-->
     <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

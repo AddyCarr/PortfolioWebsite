@@ -1,0 +1,265 @@
+
+      <html>
+        <head>
+          <title>blogusecases</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta charset="UTF-8">
+        </head>
+        <body>
+          <div id='content'>
+      <p>🔰<strong>* TLDR</strong>*</p>
+<ul>
+<li><em>Visibility modifiers: private, public, external & internal see [[Functions]]</em> </li>
+<li><em>State modifiers: view, pure</em></li>
+<li>*Custom Modifiers: Like function add ons, allow for pre-requirements and other aspects to be added to a func and data passed in. Func types are same for modifiers. Arguments must be passed.</li>
+<li><em>" _; " is added after modifier definition to specify where the function the modifier is added to should start</em></li>
+</ul>
+<hr />
+<p>function modifier looks just like a function, but uses the keyword&nbsp;<code>modifier</code>&nbsp;instead of the keyword&nbsp;<code>function</code>. And it can't be called directly like a function can — instead we can attach the modifier's name at the end of a function definition to change that function's behavior.</p>
+<p>modifiers are added as an extension before the function body, and they themselves can have arguments passed in. For the common use case as a requirements check on function access, a modifier could be added with the user's age passed in, to confirm age and access to the function. </p>
+<p>&nbsp;- one of the most common use-cases is to add a quick&nbsp;<code>require</code>&nbsp;check before a function executes.</p>
+<p>Syntax is as below:</p>
+<pre><code class="hljs solidity language-solidity"><span class="hljs-variable">modifier</span> <span class="hljs-operator">&lt;</span><span class="hljs-variable">modifierName</span><span class="hljs-title function_">&gt;</span>(&lt;<span class="hljs-params">input</span> <span class="hljs-params">parameters</span>&gt;) {
+  <span class="hljs-variable">_</span>;
+}
+</code></pre>
+<h2 id="onlyowner">OnlyOwner</h2>
+<pre><code class="hljs solidity language-solidity">modifier onlyOwner {
+  require(msg.sender <span class="hljs-operator">=</span><span class="hljs-operator">=</span> owner)<span class="hljs-comment">;</span>
+  _<span class="hljs-comment">;</span>
+}
+</code></pre>
+<p>In this example, the <code>onlyOwner</code> modifier can be applied to a function to ensure that only the contract owner is able to execute the function. The <code>require</code> statement checks that the <code>msg.sender</code> (the address of the message caller) is equal to the contract's <code>owner</code>. If the condition is not met, the function execution will be stopped.</p>
+<p>The <strong>onlyOwner</strong> keyword is added after the function type definition and before function body.</p>
+<pre><code class="hljs solidity language-solidity">mapping (uint =&gt; uint) public age;
+<span class="hljs-comment">// Modifier that requires this user to be older than a certain age:</span>
+modifier older<span class="hljs-constructor">Than(<span class="hljs-params">uint</span> <span class="hljs-params">_age</span>, <span class="hljs-params">uint</span> <span class="hljs-params">_userId</span>)</span> { require(age<span class="hljs-literal">[<span class="hljs-identifier">_userId</span>]</span> &gt;= _age); _; }
+<span class="hljs-comment">// Must be older than 16 to drive a car (in the US, at least).</span>
+<span class="hljs-comment">// We can call the `olderThan` modifier with arguments like so:</span>
+<span class="hljs-keyword">function</span> drive<span class="hljs-constructor">Car(<span class="hljs-params">uint</span> <span class="hljs-params">_userId</span>)</span> public older<span class="hljs-constructor">Than(16, <span class="hljs-params">_userId</span>)</span> { <span class="hljs-comment">// Some function logic }</span>
+</code></pre>
+
+          </div>
+          <style type='text/css'>body {
+    font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+    background-color: #fbfbfb;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    padding: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+    body>#content {
+        padding: 0px 20px 20px 20px !important;
+    }
+}
+
+body>#content {
+    margin: 0px;
+    max-width: 900px;
+    border: 1px solid #e1e4e8;
+    padding: 10px 40px;
+    padding-bottom: 20px;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+summary {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+hr {
+    color: #bbb;
+    background-color: #bbb;
+    height: 1px;
+    flex: 0 1 auto;
+    margin: 1em 0;
+    padding: 0;
+    border: none;
+}
+
+.hljs-operator {
+    color: #868686;
+    /* There is a bug where the syntax highlighter would pick no color for e.g. `&&` symbols in the code samples. Let's overwrite this */
+}
+
+
+/**
+ * Links
+ */
+
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #0366d6;
+}
+
+a:hover {
+    color: #0366d6;
+    text-decoration: underline;
+}
+
+pre {
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
+
+
+/**
+  * Code blocks
+  */
+
+code {
+    background-color: rgba(27, 31, 35, .05);
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+    word-wrap: break-word;
+    padding: .2em .4em;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+
+pre>code {
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    word-wrap: normal;
+    font-size: 100%;
+}
+
+
+/**
+ * Blockquotes
+ */
+
+blockquote {
+    margin-left: 30px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    border-left-width: 3px;
+    padding: 0 1em;
+    color: #828282;
+    border-left: 4px solid #e8e8e8;
+    padding-left: 15px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+}
+
+blockquote * {
+    font-style: normal !important;
+    letter-spacing: 0;
+    color: #6a737d !important;
+}
+
+
+/**
+ * Tables
+ */
+
+table {
+    border-spacing: 2px;
+    display: block;
+    font-size: 14px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+th {
+    font-weight: 600;
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+
+/**
+ * Others
+ */
+
+img {
+    max-width: 100%;
+}
+
+p {
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #24292e;
+}
+
+ul {
+    margin-top: 0;
+}
+
+li {
+    color: #24292e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+li+li {
+    margin-top: 0.25em;
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #24292e;
+}
+
+a:visited {
+    color: #0366d6;
+}
+
+h1,
+h2,
+h3 {
+    border-bottom: 1px solid #eaecef;
+    color: #111;
+    /* Darker */
+}
+
+code>* {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+}</style>
+          <style type='text/css'>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-class .hljs-title,.hljs-title.class_{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style>
+        </body>
+      </html>

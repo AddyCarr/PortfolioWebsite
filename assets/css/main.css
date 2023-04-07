@@ -2093,6 +2093,11 @@ ul {
   padding: 80px 0 20px 0;
 }
 
+.page-title-blog {
+  padding: 30px 0 20px 0;
+  margin-right: 20%;
+}
+
 .page-title__title {
   font-size: 30px;
   margin-top: 0;
@@ -2568,7 +2573,7 @@ ul {
 --------------------------------------------------------------------------------*/
 
 .header {
-  padding: 10px 20px;
+  padding: 5px 5px 15px 15px;
   transition: all 0.3s cubic-bezier(0.91, 0.04, 0.13, 0.99);
   position: relative;
 }
@@ -2578,12 +2583,13 @@ ul {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: #fff, 0.5;
   z-index: 999;
 }
 
 .header.is-scroll {
   top: 0;
+  background-color: #fff;
   box-shadow: 0 2px 82px 0 rgba(0, 0, 0, 0.18);
 }
 
@@ -2602,13 +2608,23 @@ ul {
 .navbar-toggle {
   position: relative;
   width: 50px;
-  height: 35px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.navbar-toggle-sidebar {
+  position: absolute;
+  padding-top: 25px;
+  padding-right: 55px;
+  right: 0;
+  width: 50px;
+  height: 25px;
   cursor: pointer;
 }
 
 .navbar-toggle .navbar-icon {
   position: absolute;
-  top: 18px;
+  top: 12px;
   left: 5px;
 }
 
@@ -2638,7 +2654,7 @@ ul {
   width: 26px;
   height: 3px;
   transition-timing-function: ease;
-  transition-duration: 0.15s;
+  transition-duration: 1.7s;
   transition-property: transform;
   border-radius: 4px;
   background-color: #000;
@@ -2673,15 +2689,22 @@ ul {
 }
 
 .pattern-bg {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-image: url(assets/img/bg.png);
-  background-repeat: repeat;
+  background-size: contain;
+  align-items: stretch;
+  position: stretch;
+  display: -ms-flexbox;
+  background-size: 100% 100%;
   z-index: 1;
 }
 
+
+/* 22. HTML Import 
+--------------------------------------------------------------------------------*/
+
+.html-import {
+  padding-right: 20px;
+}
 /* 22. Layout
 --------------------------------------------------------------------------------*/
 
@@ -3041,19 +3064,48 @@ ul {
 sidebar-------------------------------
 */
 
+.sidesub {
+  padding-left: 20px;
+  font-size: 10px;
+}
+.pattern-bg {
+  background-image: url(../img/bg.gif);
+  position: relative;
+  align-items: stretch;
+  background-size: 100%;
+  background-position: center;
+}
 /* Sidebar */
 
 /* The sidebar menu */
+
+.side-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333;
+  margin-bottom: 20px;
+}
 
 .awe-section-blog-body {
   margin-right: 20%; /* Same as the width of the sidebar */
 }
 
 .sidenav {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 12px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 20%; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  margin-top: 81px;
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   right: 0;
@@ -3062,22 +3114,46 @@ sidebar-------------------------------
   padding-top: 20px;
   border-style: double;
   border-width: 1px;
+  box-shadow: 0 -2px 25px 0 rgba(0, 0, 0, 0.18);
  
   
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
 }
 
 /* The navigation menu links  box-shadow: 10px 2px 82px 0 rgba(218, 43, 43, 0.18);*/
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 16px;
   color: #818181;
   display: block;
 }
 
+.sidenav__inner {
+  padding: 40px 0 0 0;
+}
+
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #fe6565;
 }
 
 /* Style page content */
@@ -3122,4 +3198,9 @@ sidebar-------------------------------
 
 #close-btn:hover {
   color: #ccc;
+}
+
+
+.boxshadowtb {
+  box-shadow: 0 20px 25px 5 rgba(0, 0, 0, 0.18);
 }
