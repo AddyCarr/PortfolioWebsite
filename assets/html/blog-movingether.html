@@ -1,42 +1,34 @@
 
       <html>
         <head>
-          <title>blogusecases</title>
+          <title>readme</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta charset="UTF-8">
         </head>
         <body>
           <div id='content'>
-      <p>🔰<strong>* TLDR</strong>*</p>
+      <p>🔰 <strong><em>TLDR</em></strong></p>
 <ul>
-<li><em>Visibility modifiers: private, public, external & internal see [[Functions]]</em> </li>
-<li><em>State modifiers: view, pure</em></li>
-<li>*Custom Modifiers: Like function add ons, allow for pre-requirements and other aspects to be added to a func and data passed in. Func types are same for modifiers. Arguments must be passed.</li>
-<li><em>" _; " is added after modifier definition to specify where the function the modifier is added to should start</em></li>
+<li>Being able to inherintly move money inside the envelope of functions is a major point of advantage for solidity.</li>
+<li><strong><em>msg.value</strong> - amount of eth sent to the contract</em></li>
+<li><strong><em>address.transfer(value)</strong> - transfers ether to address</em></li>
 </ul>
-<hr />
-<p>function modifier looks just like a function, but uses the keyword&nbsp;<code>modifier</code>&nbsp;instead of the keyword&nbsp;<code>function</code>. And it can't be called directly like a function can — instead we can attach the modifier's name at the end of a function definition to change that function's behavior.</p>
-<p>modifiers are added as an extension before the function body, and they themselves can have arguments passed in. For the common use case as a requirements check on function access, a modifier could be added with the user's age passed in, to confirm age and access to the function. </p>
-<p>&nbsp;- one of the most common use-cases is to add a quick&nbsp;<code>require</code>&nbsp;check before a function executes.</p>
-<p>Syntax is as below:</p>
-<pre><code class="hljs solidity language-solidity"><span class="hljs-variable">modifier</span> <span class="hljs-operator">&lt;</span><span class="hljs-variable">modifierName</span><span class="hljs-title function_">&gt;</span>(&lt;<span class="hljs-params">input</span> <span class="hljs-params">parameters</span>&gt;) {
-  <span class="hljs-variable">_</span>;
-}
+<h2 id="--addressthisbalance---returns-balance-stored-on-contract">- <strong><em>address(this).balance</strong> - returns balance stored on contract</em></h2>
+<p><strong>Payable example</strong></p>
+<pre><code class="hljs solidity language-solidity">contract OnlineStore { <span class="hljs-keyword">function</span> buy<span class="hljs-constructor">Something()</span> <span class="hljs-keyword">external</span> payable {
+<span class="hljs-comment">// Check to make sure 0.001 ether was sent to the function call:</span>
+require(msg.value<span class="hljs-operator"> == </span><span class="hljs-number">0.001</span> ether);
+<span class="hljs-comment">// If so, some logic to transfer the digital item to the caller of the function:</span>
+transfer<span class="hljs-constructor">Thing(<span class="hljs-params">msg</span>.<span class="hljs-params">sender</span>)</span>; } }
 </code></pre>
-<h2 id="onlyowner">OnlyOwner</h2>
-<pre><code class="hljs solidity language-solidity">modifier onlyOwner {
-  require(msg.sender <span class="hljs-operator">=</span><span class="hljs-operator">=</span> owner)<span class="hljs-comment">;</span>
-  _<span class="hljs-comment">;</span>
-}
-</code></pre>
-<p>In this example, the <code>onlyOwner</code> modifier can be applied to a function to ensure that only the contract owner is able to execute the function. The <code>require</code> statement checks that the <code>msg.sender</code> (the address of the message caller) is equal to the contract's <code>owner</code>. If the condition is not met, the function execution will be stopped.</p>
-<p>The <strong>onlyOwner</strong> keyword is added after the function type definition and before function body.</p>
-<pre><code class="hljs solidity language-solidity">mapping (uint =&gt; uint) public age;
-<span class="hljs-comment">// Modifier that requires this user to be older than a certain age:</span>
-modifier older<span class="hljs-constructor">Than(<span class="hljs-params">uint</span> <span class="hljs-params">_age</span>, <span class="hljs-params">uint</span> <span class="hljs-params">_userId</span>)</span> { require(age<span class="hljs-literal">[<span class="hljs-identifier">_userId</span>]</span> &gt;= _age); _; }
-<span class="hljs-comment">// Must be older than 16 to drive a car (in the US, at least).</span>
-<span class="hljs-comment">// We can call the `olderThan` modifier with arguments like so:</span>
-<span class="hljs-keyword">function</span> drive<span class="hljs-constructor">Car(<span class="hljs-params">uint</span> <span class="hljs-params">_userId</span>)</span> public older<span class="hljs-constructor">Than(16, <span class="hljs-params">_userId</span>)</span> { <span class="hljs-comment">// Some function logic }</span>
+<p><strong>Withdawal example</strong></p>
+<pre><code class="hljs solidity language-solidity"><span class="hljs-variable">contract</span> <span class="hljs-variable">GetPaid</span> <span class="hljs-variable">is</span> <span class="hljs-variable">Ownable</span> { <span class="hljs-variable">function</span> <span class="hljs-function"><span class="hljs-title">withdraw</span>() <span class="hljs-variable">external</span> <span class="hljs-variable">onlyOwner</span> { <span class="hljs-variable">address</span> <span class="hljs-variable">payable</span> <span class="hljs-variable">_owner</span> = <span class="hljs-title">address</span>(<span class="hljs-title">uint160</span>(<span class="hljs-title">owner</span>())); <span class="hljs-variable">_owner.transfer</span>(<span class="hljs-title">address</span>(<span class="hljs-variable">this</span>).balance); } }
+</span></code></pre>
+<ul>
+<li>Note that withdrawls often use <strong>Ownable</strong>, and hence this must be imported beforehand.</li>
+</ul>
+<p>Variables can be marked payable aswell. if you want to transfer out of a variable, it can be marked payable within a function like the below:</p>
+<pre><code class="hljs solidity language-solidity"><span class="hljs-function"><span class="hljs-title">payable</span><span class="hljs-params">(msg.sender)</span></span><span class="hljs-selector-class">.transfer</span>()
 </code></pre>
 
           </div>

@@ -1,0 +1,351 @@
+
+      <html>
+        <head>
+          <title>readme</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta charset="UTF-8">
+        </head>
+        <body>
+          <div id='content'>
+      <h2 id="🔰-tldr">🔰 <strong><em>TLDR</em></strong></h2>
+<hr />
+<h2 id="contract-deployment-using-ethersjs">Contract Deployment using Ethers.JS</h2>
+<p>A represenation of our contract is creating in our testing script. <br />
+It is async and uses a parsed (string) version of the interface compiled output.<br />
+next it creates a object of what is being deployed with the bytecode and the initial input 'hi there!'<br />
+the send object is what deploys the contract, this includes a from account and the max gas.</p>
+<p>The following is a standard pattern using typescript &amp; Ethers.JS to deploy an instance of a contract named CONTRACTNAME, and provides a TX recipt wit </p>
+<pre><code class="hljs solidity language-solidity"><span class="hljs-comment">//DEPLOYMENT ----------------------------------------------------</span>
+
+<span class="hljs-comment">//Get the signers, giving names for: deployer, account1, account2</span>
+
+<span class="hljs-keyword">const</span> [deployer, account1, account2] = <span class="hljs-keyword">await</span> ethers.<span class="hljs-title function_">getSigners</span>();
+
+<span class="hljs-comment">//Deploying instance of &quot;MyToken&quot; contract. Always same process.</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">ContractFactory</span> = <span class="hljs-keyword">new</span> &lt;<span class="hljs-variable constant_">CONTRACTNAME</span>&gt;<span class="hljs-title function_">__factory</span>(deployer);
+
+<span class="hljs-keyword">const</span> contract = <span class="hljs-keyword">await</span> <span class="hljs-title class_">ContractFactory</span>.<span class="hljs-title function_">deploy</span>();
+
+<span class="hljs-keyword">const</span> deployTxReceipt = <span class="hljs-keyword">await</span> contract.<span class="hljs-property">deployTransaction</span>.<span class="hljs-title function_">wait</span>();
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`The  contract was deployed at thh address <span class="hljs-subst">${contract.address}</span> at the block number <span class="hljs-subst">${deployTxReceipt.blockNumber}</span>`</span>);
+</code></pre>
+<p>public deployment using alchemy and .env</p>
+<pre><code class="hljs solidity language-solidity">import { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@ethersproject/providers&quot;</span>;
+
+import { ethers } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;hardhat&quot;</span>;
+
+import <span class="hljs-comment">* as dotenv from &quot;dotenv&quot;;</span>
+
+import { Lottery__factory } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../typechain-types&quot;</span>;
+
+dotenv.config();
+
+
+
+async function mai<span class="hljs-meta">n</span>() {
+
+<span class="hljs-variable">&amp;nbsp</span>; const provider = new ethers.providers.AlchemyProvider(
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-string">&quot;goerli&quot;</span>,
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; process.env.ALCHEMY_API_KEY
+
+<span class="hljs-variable">&amp;nbsp</span>; );
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; const privateKey = process.env.PRIVATE_KEY;
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-keyword">if</span> (!privateKey || privateKey.<span class="hljs-keyword">length</span> &lt;= 0)
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; throw new <span class="hljs-keyword">Error</span>(<span class="hljs-string">&quot;PRIVATE_KEY is not set&quot;</span>);
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; const wallet = new ethers.Wallet(privateKey);
+
+<span class="hljs-variable">&amp;nbsp</span>; const signer = wallet.connect(provider);
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; const signers = await ethers.getSigners();
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; const balance = await signer.getBalance();
+
+<span class="hljs-variable">&amp;nbsp</span>; console.<span class="hljs-meta">log</span>(`The account ${signer.address} has a balance of <span class="hljs-variable">&amp;nbsp</span>;${balance} Wei`);
+
+
+
+<span class="hljs-variable">&amp;nbsp</span>; //DEPLOYMENT
+
+<span class="hljs-variable">&amp;nbsp</span>; const lotteryContractFactory = new Lottery__factory(signer);
+
+<span class="hljs-variable">&amp;nbsp</span>; console.<span class="hljs-meta">log</span>(<span class="hljs-string">&quot;Deploying contract...&quot;</span>);
+
+<span class="hljs-variable">&amp;nbsp</span>; const lotteryContract = await lotteryContractFactory.deploy(
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-string">&quot;Lottery Token&quot;</span>,
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-string">&quot;LTO&quot;</span>,
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; 1,
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; 1,
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; 2 ^ (10 <span class="hljs-comment">* 18)
+
+&amp;nbsp;</span> );
+
+<span class="hljs-variable">&amp;nbsp</span>; console.<span class="hljs-meta">log</span>(<span class="hljs-string">&quot;Awaiting for confirmations...&quot;</span>);
+
+<span class="hljs-variable">&amp;nbsp</span>; const txReceipts = await lotteryContract.deployTransaction.wait();
+
+<span class="hljs-variable">&amp;nbsp</span>; console.<span class="hljs-meta">log</span>(
+
+<span class="hljs-variable">&amp;nbsp</span>; <span class="hljs-variable">&amp;nbsp</span>; `Ballot contract deployed to ${txReceipts.contractAddress} <span class="hljs-keyword">in</span> the block number ${txReceipts.blockNumber}`
+
+<span class="hljs-variable">&amp;nbsp</span>; );
+
+}
+
+
+
+mai<span class="hljs-meta">n</span>().catch((<span class="hljs-keyword">error</span>) =&gt; {
+
+<span class="hljs-variable">&amp;nbsp</span>; console.<span class="hljs-keyword">error</span>(<span class="hljs-keyword">error</span>);
+
+<span class="hljs-variable">&amp;nbsp</span>; process.exitCode = 1;
+
+});
+</code></pre>
+
+          </div>
+          <style type='text/css'>body {
+    font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+    background-color: #fbfbfb;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    padding: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+    body>#content {
+        padding: 0px 20px 20px 20px !important;
+    }
+}
+
+body>#content {
+    margin: 0px;
+    max-width: 900px;
+    border: 1px solid #e1e4e8;
+    padding: 10px 40px;
+    padding-bottom: 20px;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+summary {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+hr {
+    color: #bbb;
+    background-color: #bbb;
+    height: 1px;
+    flex: 0 1 auto;
+    margin: 1em 0;
+    padding: 0;
+    border: none;
+}
+
+.hljs-operator {
+    color: #868686;
+    /* There is a bug where the syntax highlighter would pick no color for e.g. `&&` symbols in the code samples. Let's overwrite this */
+}
+
+
+/**
+ * Links
+ */
+
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #0366d6;
+}
+
+a:hover {
+    color: #0366d6;
+    text-decoration: underline;
+}
+
+pre {
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
+
+
+/**
+  * Code blocks
+  */
+
+code {
+    background-color: rgba(27, 31, 35, .05);
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+    word-wrap: break-word;
+    padding: .2em .4em;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+
+pre>code {
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    word-wrap: normal;
+    font-size: 100%;
+}
+
+
+/**
+ * Blockquotes
+ */
+
+blockquote {
+    margin-left: 30px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    border-left-width: 3px;
+    padding: 0 1em;
+    color: #828282;
+    border-left: 4px solid #e8e8e8;
+    padding-left: 15px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+}
+
+blockquote * {
+    font-style: normal !important;
+    letter-spacing: 0;
+    color: #6a737d !important;
+}
+
+
+/**
+ * Tables
+ */
+
+table {
+    border-spacing: 2px;
+    display: block;
+    font-size: 14px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+th {
+    font-weight: 600;
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+
+/**
+ * Others
+ */
+
+img {
+    max-width: 100%;
+}
+
+p {
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #24292e;
+}
+
+ul {
+    margin-top: 0;
+}
+
+li {
+    color: #24292e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+li+li {
+    margin-top: 0.25em;
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #24292e;
+}
+
+a:visited {
+    color: #0366d6;
+}
+
+h1,
+h2,
+h3 {
+    border-bottom: 1px solid #eaecef;
+    color: #111;
+    /* Darker */
+}
+
+code>* {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+}</style>
+          <style type='text/css'>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-class .hljs-title,.hljs-title.class_{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style>
+        </body>
+      </html>
