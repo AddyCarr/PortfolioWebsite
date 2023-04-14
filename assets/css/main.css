@@ -253,6 +253,10 @@ a {
   color: #ff594f;
 }
 
+.a {
+  color: #ff594f;
+}
+
 a:hover {
   text-decoration: line-through;
   color: #ff594f;
@@ -2110,7 +2114,6 @@ ul {
   font-size: 30px;
   margin-top: 0;
   margin-bottom: 0;
-  display: inline-block;
 }
 
 @media (min-width: 320px) {
@@ -3147,12 +3150,13 @@ sidebar-------------------------------
   cursor: pointer;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 20%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   right: 0;
   background-color: #ffffff; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden; /* Disable verticle scroll */
   padding-top: 20px;
   border-style: double;
   border-width: 1px;
@@ -3181,12 +3185,21 @@ sidebar-------------------------------
 }
 
 /* The navigation menu links  box-shadow: 10px 2px 82px 0 rgba(218, 43, 43, 0.18);*/
+
+.card-img {
+display: block;
+}
+
+.card-body {
+  display: block;
+  }
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 16px;
   color: #818181;
   display: block;
+  overflow: hidden;
 }
 
 .sidenav__inner {
