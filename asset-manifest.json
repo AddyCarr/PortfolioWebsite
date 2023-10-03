@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.be40cabf.css",
+    "main.js": "/static/js/main.3d84fdcc.js",
+    "static/js/787.eb46e000.chunk.js": "/static/js/787.eb46e000.chunk.js",
+    "static/media/cloudsbgbody.png": "/static/media/cloudsbgbody.adbfdf5b7b13e69c30df.png",
+    "static/media/cloudsbg.png": "/static/media/cloudsbg.cef380699e69fa26117b.png",
+    "static/media/usdgraph.png": "/static/media/usdgraph.2a8d9cf3085e924939af.png",
+    "static/media/cloudsbgbody2.png": "/static/media/cloudsbgbody2.ce94acfc978f63dc4d51.png",
+    "static/media/coins.png": "/static/media/coins.29aff87f6ffb81c2beb3.png",
+    "static/media/clouds.png": "/static/media/clouds.d43aa257c99cf871012f.png",
+    "static/media/coins2.png": "/static/media/coins2.89ca8be54687b99a1ef0.png",
+    "static/media/cointrails.png": "/static/media/cointrails.f79441321d41adb9c5a0.png",
+    "static/media/cointrails2.png": "/static/media/cointrails2.f84e1951fce4cd2a2dd2.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "cryptodecrypted.html": "/cryptodecrypted.html",
+    "main.be40cabf.css.map": "/static/css/main.be40cabf.css.map",
+    "main.3d84fdcc.js.map": "/static/js/main.3d84fdcc.js.map",
+    "787.eb46e000.chunk.js.map": "/static/js/787.eb46e000.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be40cabf.css",
+    "static/js/main.3d84fdcc.js"
+  ]
+}
