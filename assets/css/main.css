@@ -251,6 +251,7 @@ img {
 
 a {
   color: #ff594f;
+  display: inline;
 }
 
 .a {
@@ -258,7 +259,7 @@ a {
 }
 
 a:hover {
-  text-decoration: line-through;
+  text-decoration:line-through;
   color: #ff594f;
 }
 
@@ -1808,9 +1809,9 @@ ul {
   width: 100%;
 }
 
-.grid-css .grid-item .grid-item__inner .grid-item__content-wrapper {
+/* .grid-css .grid-item .grid-item__inner .grid-item__content-wrapper {
   background-color: #ccc;
-}
+} */
 
 .grid-css.grid-css--grid .grid-item__content-wrapper {
   top: 0;
@@ -1854,6 +1855,8 @@ ul {
 .hoverbox.light .hb_back {
   background-color: rgba(255, 255, 255, 0.95);
   color: #333;
+  border-radius: 15px;
+  
 
   
 }
@@ -1862,14 +1865,18 @@ ul {
 .hoverbox.light .hb_back h3,
 .hoverbox.light .hb_back h4 {
   color: #333;
+  border-radius: 20px;
 }
 
 .hb_front {
   z-index: auto !important;
+  border-radius: 5px;
+  
 }
 
 .hb_back {
   position: absolute;
+  border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
   top: 0;
@@ -2118,7 +2125,7 @@ ul {
 
 @media (min-width: 320px) {
   .page-title__title {
-    font-size: calc(2.27273vw + 22.72727px);
+    font-size: calc(1.3vw + 22.72727px);
   }
 }
 
@@ -2141,7 +2148,7 @@ ul {
   width: 40px;
   height: 3px;
   background-color: #333;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .page-title__social {
@@ -2433,12 +2440,18 @@ ul {
   margin-bottom: 0;
 }
 
+@media (min-width: 500px) {
+  .title__title {
+    font-size: 18px;
+  }
+}
+
 /* 17. typing
 --------------------------------------------------------------------------------*/
 
 .typed-cursor {
   opacity: 1;
-  font-weight: 100;
+  font-weight: 10;
   animation: blink 0.7s infinite;
 }
 
