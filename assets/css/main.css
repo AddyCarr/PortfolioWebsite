@@ -2425,6 +2425,11 @@ ul {
   justify-content: center;
  }
 
+ @media (min-width: 1200px) {
+  .container-folio {
+      width: 1400px;
+  }
+}
 /* 16. title
 --------------------------------------------------------------------------------*/
 
